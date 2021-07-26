@@ -8,6 +8,8 @@ function App() {
   const [textContent, setTextContent] = useState([]);
   const [userInput, setUserInput] = useState("");
 
+  
+
   // Get info from Firebase
   useEffect(() => {
     const dbRef = firebase.database().ref();
@@ -28,7 +30,7 @@ function App() {
   }, []);
 
   const handleChange = (e) => {
-
+    setUserInput(e.target.value)
   };
 
   const handleSubmit = (e) => {
@@ -37,37 +39,56 @@ function App() {
     dbRef.push(userInput);
     console.log(userInput);
 
+    setUserInput("");
+
   };
 
   return (
     <div className="App">
 
-      <header className="App-header">
-        <h1>Linked</h1>
-        <p>Share your feeling with someone important</p>
+      <div className="container">
+      <nav>
+        <p>MENU</p>
+        <p><a href="#">Profile</a></p>
+        <p><a href="#">Aniversary</a></p>
+        <p><a href="#">Album</a></p>
+        <p><a href="#">Room</a></p>
+        <p><a href="#">Notification</a></p>
+      </nav>
 
-        <form action="submit" onSubmit={handleSubmit}>
-          <label htmlFor="userText"></label>
-          <textarea id="userText"  value={userInput} cols="70" rows="10"></textarea>
-          <button type="submit">Tweet!</button>
-        </form>
-      </header>
-
+      <div className="container2">
+        <header className="App-header">
+          <div className="wrapper">
+            <p>Loged in as ------.</p>
+            <h1>LINK'd</h1>
+            <p>Share your feeling with someone   important</p>
+            <form action="submit" onSubmit=  {handleSubmit}>
+              <label htmlFor="userText"></label>
+              <textarea id="userText"  onChange=  {handleChange} value={userInput} cols="70" rows="10" placeholder="What's happening" maxlength="180"></textarea>
+              <button type="submit">Tweet!</button>
+            </form>
+          </div>
+        </header>
 
       <main className="App-main">
-        <ul>
-          {
-            textContent.map((textObj) => {
-              return(
-                <li key={textObj.key}>
-                <p>{textObj.content}</p>
-                <p></p>
-                </li>
-              )
-            })
-          }
-        </ul>
+        <div className="wrapper">
+          <ul className="text-container">
+            {
+              textContent.map((textObj) => {
+                return(
+                  <li key={textObj.key}>
+                    <p>{textObj.content}</p>
+                    <p></p>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
       </main>
+            </div>
+            </div>
+
 
       <footer className="App-footer">
         <p>Created at<a href="https://junocollege.com/">Juno College of Techonology</a> by Mao</p>
