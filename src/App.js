@@ -2,11 +2,13 @@ import {useState, useEffect} from 'react';
 import firebase from './firebase';
 import './App.css';
 import './index.css';
+// import Login from './Login';
 
 function App() {
 
   const [textContent, setTextContent] = useState([]);
   const [userInput, setUserInput] = useState("");
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   
 
@@ -49,17 +51,19 @@ function App() {
       <div className="container">
       <nav>
         <p>MENU</p>
-        <p><a href="#">Profile</a></p>
-        <p><a href="#">Aniversary</a></p>
-        <p><a href="#">Album</a></p>
-        <p><a href="#">Room</a></p>
-        <p><a href="#">Notification</a></p>
+        <p><a href="#usertText">Profile</a></p>
+        <p><a href="#usertText">Aniversary</a></p>
+        <p><a href="#usertText">Album</a></p>
+        <p><a href="#usertText">Room</a></p>
+        <p><a href="#usertText">Notification</a></p>
       </nav>
 
       <div className="container2">
         <header className="App-header">
           <div className="wrapper">
-            <p>Loged in as ------.</p>
+            {
+              isUserLoggedIn ? <p>Welcome to the App!</p> : null
+            }
             <h1>LINK'd</h1>
             <p>Share your feeling with someone   important</p>
             <form action="submit" onSubmit=  {handleSubmit}>
