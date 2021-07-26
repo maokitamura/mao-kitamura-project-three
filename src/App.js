@@ -9,6 +9,7 @@ function App() {
   const [textContent, setTextContent] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  setIsUserLoggedIn(false);
 
   
 
